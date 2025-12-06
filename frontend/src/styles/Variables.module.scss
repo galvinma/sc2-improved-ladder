@@ -1,0 +1,75 @@
+// Colors
+$primaryBlack: #212121;
+$primaryWhite: #FFFFFF;
+$primaryGray: #eceff1;
+$primaryBlue: #4F7CAC;
+$dividerGray: #e0e0e0;
+$secondaryBlue: #335167;
+
+// Spacing
+$marginSpacing: 8rem;
+$gutterSpacing: 4rem;
+$tabSpacing: 2rem;
+$indentSpacing: 1rem;
+$wedgeSpacing: 0.5rem;
+$sliverSpacing: 0.25rem;
+$atomicSpacing: 0.125rem;
+$voidSpacing: 0rem;
+
+// Breakpoints
+$zero: 0px;
+$xxxxs: 200px;
+$xxxs: 200px;
+$xxs: 300px;
+$xs: 450px;
+$sm: 600px;
+$md: 900px;
+$lg: 1200px;
+$xl: 1536px;
+$xxl: 1800px;
+
+// Weights
+$bold: 700;
+$semiBold: 500;
+
+// heights
+$appBarHeight: 1.25 * $marginSpacing;
+$appFooterHeight: $gutterSpacing;
+
+:export {
+    // colors
+    primaryBlack: $primaryBlack;
+    primaryWhite: $primaryWhite;
+    primaryGray: $primaryGray;
+    primaryBlue: $primaryBlue;
+    dividerGray: $dividerGray;
+    secondaryBlue: $secondaryBlue;
+
+    // spacing
+    marginSpacing: $marginSpacing;
+    gutterSpacing: $gutterSpacing;
+    tabSpacing: $tabSpacing;
+    indentSpacing: $indentSpacing;
+    wedgeSpacing: $wedgeSpacing;
+    sliverSpacing: $sliverSpacing;
+    atomicSpacing: $atomicSpacing;
+    voidSpacing: $voidSpacing;
+
+    // bp
+    zero: $zero;
+    xxs: $xxs;
+    xs: $xs;
+    sm: $sm;
+    md: $md;
+    lg: $lg;
+    xl: $xl;
+    xxl: $xxl;
+
+    // weights
+    bold: $bold;
+    semiBold: $semiBold;
+
+    // height
+    appBarHeight: $appBarHeight;
+    appFooterHeight: $appFooterHeight;
+}

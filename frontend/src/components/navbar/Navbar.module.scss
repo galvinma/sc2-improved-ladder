@@ -1,0 +1,158 @@
+@use '../.././styles/App.module.scss' as app;
+@use '../.././styles/Variables.module.scss' as vars;
+
+// Nav
+.appBar {
+    position: fixed;
+    width: 100%;
+    min-height: vars.$appBarHeight;
+    z-index: 100;
+    background: 'transparent';
+    box-shadow: 'none';
+}
+
+.toolBar {
+    margin: vars.$indentSpacing;
+}
+
+@media (max-width: vars.$md) {
+    .ToolBar {
+        padding-left: vars.$wedgeSpacing;
+    }
+}
+
+// Logo
+.logoContainer {
+    @extend .flexRow;
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+@media (max-width: vars.$md) {
+    .logoContainer {
+        display: none;
+    }
+}
+
+.logo {
+    height: 6rem;
+    padding-right: vars.$tabSpacing;
+    cursor: pointer;
+}
+
+// Tabs
+.tabsContainer {
+    @extend .flexRow;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.tabsStack {
+    @extend .flexRow;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-right: vars.$wedgeSpacing;
+}
+
+@media (max-width: vars.$lg) {
+    .tabsStack {
+        padding-right: vars.$tabSpacing;
+    }
+}
+
+.navTabBtn {
+    border-radius: vars.$voidSpacing;
+    white-space: nowrap;
+    padding-left: 1.5 * vars.$indentSpacing;
+    padding-right: 1.5 * vars.$indentSpacing;
+    font-weight: vars.$semiBold;
+}
+
+.navTabBtnText {
+    color: vars.$primaryBlack;
+}
+
+@media (max-width: vars.$lg) {
+    .navTabBtn {
+        padding-left: vars.$indentSpacing;
+        padding-right: vars.$indentSpacing;
+    }
+}
+
+@media (max-width: vars.$md) {
+    .navTabBtn {
+        padding-left: vars.$wedgeSpacing;
+        padding-right: vars.$wedgeSpacing;
+    }
+}
+
+.activeNavTabBtn {
+    font-weight: vars.$bold;
+}
+
+// User Profile
+.profileContainer {
+    @extend .flexRow;
+    @extend .flexAlignCenter;
+    color: vars.$primaryBlack;
+    flex-grow: 1;
+    border-left: 1px solid vars.$dividerGray;
+    height: auto;
+    padding-left: 1.5 * vars.$indentSpacing;
+    padding-right: vars.$tabSpacing;
+}
+
+.profileIcon {
+    color: vars.$primaryGray;
+    font-size: 6rem;
+}
+
+.navName {
+    font-size: 1.4rem;
+}
+
+.navRoles {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+// Icons / Actions
+.iconsContainer {
+    @extend .flexRow;
+    align-content: space-between;
+    padding-left: vars.$indentSpacing;
+    border-left: 1px solid vars.$dividerGray;
+}
+
+@media (max-width: vars.$md) {
+    .iconsContainer {
+        padding-left: vars.$wedgeSpacing;
+    }
+}
+
+.iconContainer {
+    @extend .flexRow;
+    @extend .flexAlignCenter;
+}
+
+.navIcon {
+    font-size: 2.5rem;
+    margin-right: vars.$indentSpacing;
+    color: vars.$primaryBlack;
+}
+
+.navActionBtn {
+    @extend .flexRow;
+    justify-content: flex-start;
+    width: 100%;
+    white-space: nowrap;
+}
+
+// Gradient bar
+.gradientBar {
+    width: 100%;
+    background-image: linear-gradient(45deg, vars.$primaryBlue, vars.$primaryWhite);
+    height: 0.51rem;
+    transition: height 0.75s ease;
+}
