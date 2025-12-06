@@ -1,0 +1,14 @@
+services:
+  sc2-improved-ladder-frontend:
+    container_name: sc2-improved-ladder-frontend
+    restart: unless-stopped
+    image: sc2-improved-ladder-frontend:latest
+    ports:
+      - "5173:5173"
+    networks:
+      - sc2-improved-ladder-network
+
+networks:
+  sc2-improved-ladder-network:
+    name: sc2-improved-ladder-network
+    external: true
