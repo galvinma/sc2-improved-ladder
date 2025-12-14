@@ -20,8 +20,17 @@ export default function RegistrationForm(): JSX.Element {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const checkRegistration = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.keyCode === 13) {
+      handleRegistration(email, firstName, lastName, password, confirmPassword);
+    }
+  };
+
   return (
-    <Box className={formStyles.formWrapper}>
+    <Box
+      className={formStyles.formWrapper}
+      onKeyDown={(e) => checkRegistration(e)}
+    >
       <Box className={appStyles.paragraphSpacing}>
         <Typography variant="h2" className={appStyles.pageTitle}>
           {title}
