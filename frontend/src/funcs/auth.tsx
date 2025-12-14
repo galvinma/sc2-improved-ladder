@@ -22,9 +22,7 @@ export async function verifyToken(): Promise<boolean> {
 
 export const handleLogout = (): void => {
   console.debug("Handling user sign-out...");
-  // TODO API call
-  // TODO store cleanup
-
+  localStorage.removeItem("sc2il-token");
   window.location.replace("/login");
 };
 
@@ -42,14 +40,14 @@ export async function handleLogin(
       },
     })
       .then((res) => {
+        localStorage.setItem("sc2il-token", res.data.token);
+
         const user: User = {
           email: res.data.email,
-          token: res.data.token,
           firstName: res.data.firstName,
           lastName: res.data.lastName,
         };
 
-        // TODO there is a race condition here on login. Token is not set before auth check after redirect
         Store.setState({ ...user });
         resolve(true);
       })

@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import React, { useEffect, useState, type JSX } from "react";
+import React, { useEffect, useLayoutEffect, useState, type JSX } from "react";
 import { Navigate, Outlet, useLocation } from "react-router";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
@@ -15,6 +15,7 @@ interface layoutProps {
 export default function Layout(props: layoutProps): JSX.Element {
   const location = useLocation();
   const [appState, setAppState] = useState({
+    currentPathname: "",
     loaded: false,
     authenticated: false,
   });
@@ -27,20 +28,22 @@ export default function Layout(props: layoutProps): JSX.Element {
     verifyToken()
       .then(() => {
         setAppState({
+          currentPathname: location.pathname,
           loaded: true,
           authenticated: true,
         });
       })
       .catch(() => {
         setAppState({
+          currentPathname: location.pathname,
           loaded: true,
           authenticated: false,
         });
       });
-  }, [location, props.privateRoute]);
+  }, [location]);
 
   const renderContent = (): JSX.Element => {
-    if (appState.loaded) {
+    if (appState.loaded && appState.currentPathname === location.pathname) {
       if (props.privateRoute === true && appState.authenticated === false) {
         return (
           <Box style={{ ...pageWrapper }}>
