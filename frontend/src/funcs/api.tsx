@@ -55,7 +55,7 @@ const constructURL = ({ endpoint }: requestArgs): string => {
 const constructHeaders = (): any => {
   return {
     headers: {
-      Authorization: "Bearer " + Store.getState().token,
+      Authorization: "Bearer " + localStorage.getItem("sc2il-token"),
       "Content-Type": "application/json",
     },
   };

@@ -29,8 +29,14 @@ export default function LoginForm(): JSX.Element {
       });
   };
 
+  const checkLogin = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.keyCode === 13) {
+      executeLogin();
+    }
+  };
+
   return (
-    <Box className={formStyles.formWrapper}>
+    <Box className={formStyles.formWrapper} onKeyDown={(e) => checkLogin(e)}>
       <Box className={appStyles.paragraphSpacing}>
         <Typography variant="h2" className={appStyles.pageTitle}>
           {title}
@@ -67,6 +73,7 @@ export default function LoginForm(): JSX.Element {
           disableElevation
           className={formStyles.actionButton}
           onClick={() => executeLogin()}
+          onSubmit={() => executeLogin()}
         >
           <Typography variant="body1" className={appStyles.invertPrimaryFont}>
             Continue
