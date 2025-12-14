@@ -13,19 +13,31 @@ services:
     environment:
       - WATCHPACK_POLLING=true 
 
-  sc2-improved-ladder-backend:
-    container_name: sc2-improved-ladder-backend
+  sc2-improved-ladder-api:
+    container_name: sc2-improved-ladder-api
     image: sc2-improved-ladder-backend:latest
     command: python -m api.main 
     ports:
       - "127.0.0.1:5000:5000"
     volumes:
       - .env:/app/.env
-      - ./log:/app/log
       - ./backend:/app/backend
     env_file: ./backend/.env
     networks:
       - sc2-improved-ladder-network
+
+
+  sc2-improved-ladder-matchmaker:
+    container_name: sc2-improved-ladder-matchmaker
+    image: sc2-improved-ladder-backend:latest
+    command: python -m matchmaker.main  -s
+    volumes:
+      - .env:/app/.env
+      - ./backend:/app/backend
+    env_file: ./backend/.env
+    networks:
+      - sc2-improved-ladder-network
+
 
   sc2-improved-ladder-db:
     container_name:   sc2-improved-ladder-db
