@@ -10,7 +10,6 @@ export type genericObject = Record<
 // User
 export interface User extends genericObject {
   email: string;
-  token: string;
   firstName: string;
   lastName: string;
 }
