@@ -3,16 +3,23 @@
 
 // Nav
 .appBar {
-    position: fixed;
     width: 100%;
     min-height: vars.$appBarHeight;
     z-index: 100;
     background: 'transparent';
     box-shadow: 'none';
+
 }
 
 .toolBar {
-    margin: vars.$indentSpacing;
+    margin: 0px;
+    padding: 0px;
+}
+
+.toolbarWrapper {
+    padding-left: vars.$gutterSpacing;
+    padding-right: vars.$gutterSpacing;
+    background-color: vars.$primaryWhite;
 }
 
 @media (max-width: vars.$md) {
@@ -26,6 +33,8 @@
     @extend .flexRow;
     flex-grow: 1;
     min-width: 200px;
+    max-height: 50px;
+    align-items: center;
 }
 
 @media (max-width: vars.$md) {
@@ -36,15 +45,20 @@
 
 .logo {
     height: 6rem;
-    padding-right: vars.$tabSpacing;
+    padding-right: vars.$indentSpacing;
     cursor: pointer;
+}
+
+.logoText {
+    font-size: 2.25rem;
+    color: vars.$secondaryBlue;
+    font-weight: 500;
 }
 
 // Tabs
 .tabsContainer {
     @extend .flexRow;
     flex-grow: 1;
-    width: 100%;
 }
 
 .tabsStack {
@@ -66,11 +80,11 @@
     white-space: nowrap;
     padding-left: 1.5 * vars.$indentSpacing;
     padding-right: 1.5 * vars.$indentSpacing;
-    font-weight: vars.$semiBold;
 }
 
 .navTabBtnText {
-    color: vars.$primaryBlack;
+    color: vars.$secondaryBlue;
+    font-size: 1.4rem;
 }
 
 @media (max-width: vars.$lg) {
@@ -89,6 +103,7 @@
 
 .activeNavTabBtn {
     font-weight: vars.$bold;
+    border-bottom: 1px solid vars.$primaryBlue;
 }
 
 // User Profile
@@ -122,7 +137,7 @@
     @extend .flexRow;
     align-content: space-between;
     padding-left: vars.$indentSpacing;
-    border-left: 1px solid vars.$dividerGray;
+    border-left: 1px solid vars.$quaternaryBlue;
 }
 
 @media (max-width: vars.$md) {
@@ -139,7 +154,7 @@
 .navIcon {
     font-size: 2.5rem;
     margin-right: vars.$indentSpacing;
-    color: vars.$primaryBlack;
+    color: vars.$tertiaryBlue;
 }
 
 .navActionBtn {
@@ -152,7 +167,8 @@
 // Gradient bar
 .gradientBar {
     width: 100%;
-    background-image: linear-gradient(45deg, vars.$primaryBlue, vars.$primaryWhite);
-    height: 0.51rem;
+    background-image: linear-gradient(45deg, vars.$primaryBlue, vars.$quaternaryBlue);
+    height: 0.5rem;
     transition: height 0.75s ease;
+    // align-self: flex-end;
 }

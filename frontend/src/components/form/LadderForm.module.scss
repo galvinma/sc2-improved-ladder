@@ -1,0 +1,49 @@
+
+@use '../.././styles/App.module.scss' as app;
+@use '../.././styles/Variables.module.scss' as vars;
+
+
+.sectionHeader {
+    font-size: 2rem;
+    color: vars.$secondaryBlue;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: vars.$indentSpacing;
+}
+
+.raceChip {
+    margin-right: vars.$wedgeSpacing;
+    cursor: pointer;
+}
+
+.quickSelectContainer {
+    // border-radius: vars.$indentSpacing;
+    // border: solid 1.5px vars.$primaryBlue;
+    // padding: vars.$tabSpacing;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: flex-start;
+    // width: fit-content;
+    // min-width: 400px;
+    // padding: vars.$gutterSpacing;
+    // margin-right: auto;
+    // margin-left: auto;
+}
+
+
+.ladderFormWrapper{
+    // background-color: vars.$primaryWhite;
+    // border-radius: vars.$indentSpacing;
+    // border: solid 1.5px vars.$primaryBlue;
+    // padding: vars.$tabSpacing;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: flex-start;
+    // width: fit-content;
+    // min-width: 400px;
+    // padding: vars.$gutterSpacing;
+    // margin-right: auto;
+    // margin-left: auto;
+}

@@ -11,9 +11,8 @@ export const developmentUser: User = {
 
 export const getCurrentUser = (): User => {
   const user: User = {
-    userId: Store.getState().userId,
-    userName: Store.getState().userName,
     email: Store.getState().email,
+    token: Store.getState().token,
     firstName: Store.getState().firstName,
     lastName: Store.getState().lastName,
   };

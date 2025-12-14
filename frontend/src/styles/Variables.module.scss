@@ -3,8 +3,20 @@ $primaryBlack: #212121;
 $primaryWhite: #FFFFFF;
 $primaryGray: #eceff1;
 $primaryBlue: #4F7CAC;
-$dividerGray: #e0e0e0;
 $secondaryBlue: #335167;
+$tertiaryBlue: #2A3944;
+$quaternaryBlue: #A7BED6;
+$dividerGray: #e0e0e0;
+
+$zergPurple: #882991;
+$zergPurpleBackground: #F1E5F2;
+$terranBlue: #295a91;
+$terranBlueBackground: #E5EBF2;
+$protossYellow: #dec93e;
+$protossYellowBackground: #FBF9E7;
+$randomGray: #646464;
+$randomGrayBackground: #ECECEC;
+
 
 // Spacing
 $marginSpacing: 8rem;
@@ -15,6 +27,10 @@ $wedgeSpacing: 0.5rem;
 $sliverSpacing: 0.25rem;
 $atomicSpacing: 0.125rem;
 $voidSpacing: 0rem;
+
+// Font Size
+
+$fontSizeH1: 3rem;
 
 // Breakpoints
 $zero: 0px;
@@ -32,9 +48,10 @@ $xxl: 1800px;
 $bold: 700;
 $semiBold: 500;
 
-// heights
-$appBarHeight: 1.25 * $marginSpacing;
+// heights / widths
+$appBarHeight: $marginSpacing;
 $appFooterHeight: $gutterSpacing;
+$appMargins: $gutterSpacing;
 
 :export {
     // colors
@@ -42,8 +59,20 @@ $appFooterHeight: $gutterSpacing;
     primaryWhite: $primaryWhite;
     primaryGray: $primaryGray;
     primaryBlue: $primaryBlue;
-    dividerGray: $dividerGray;
     secondaryBlue: $secondaryBlue;
+    tertiaryBlue: $tertiaryBlue;
+    quaternaryBlue: $quaternaryBlue;
+    dividerGray: $dividerGray;
+
+
+    zergPurple: $zergPurple;
+    zergPurpleBackground: $zergPurpleBackground;
+    terranBlue: $terranBlue;
+    terranBlueBackground: $terranBlueBackground;
+    protossYellow: $protossYellow;
+    protossYellowBackground: $protossYellowBackground;
+    randomGray: $randomGray;
+    randomGrayBackground: $randomGrayBackground;
 
     // spacing
     marginSpacing: $marginSpacing;
@@ -54,6 +83,9 @@ $appFooterHeight: $gutterSpacing;
     sliverSpacing: $sliverSpacing;
     atomicSpacing: $atomicSpacing;
     voidSpacing: $voidSpacing;
+
+    // font size
+    fontSizeH1: $fontSizeH1;
 
     // bp
     zero: $zero;
@@ -72,4 +104,5 @@ $appFooterHeight: $gutterSpacing;
     // height
     appBarHeight: $appBarHeight;
     appFooterHeight: $appFooterHeight;
+    appMargins: $appMargins;
 }

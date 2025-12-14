@@ -4,27 +4,34 @@ import Landing from "../pages/landing/Landing";
 import ExceptionPage from "../pages/exception/ExceptionPage";
 import type { RoutePropsList } from "./RouteProps";
 import Lobby from "../pages/lobby/Lobby";
-import Ladder from "../pages/ladder/Ladder";
+import Versus from "../pages/versus/Versus";
 import Stats from "../pages/stats/Stats";
 import Login from "../pages/login/Login";
-import SignUp from "../pages/signup/SignUp";
+import Register from "../pages/register/Register";
 import Match from "../pages/match/Match";
+import History from "../pages/history/History";
+import Settings from "../pages/settings/Settings";
 
 export function getRoutes(): RoutePropsList {
   return [
     // Public
-    // TODO Sort into public/private
-    { path: "/", private: false, element: <Landing /> },
-    { path: "/lobby", private: false, element: <Lobby /> },
-    { path: "/match", private: false, element: <Match /> },
-    { path: "/ladder", private: false, element: <Ladder /> },
-    { path: "/stats", private: false, element: <Stats /> },
-    { path: "/faq", private: false, element: <Faq /> },
-    { path: "/login", private: false, element: <Login /> },
-    { path: "/signup", private: false, element: <SignUp /> },
+    { path: "/", privateRoute: false, element: <Landing /> },
+    { path: "/stats", privateRoute: false, element: <Stats /> },
+    { path: "/faq", privateRoute: false, element: <Faq /> },
+    { path: "/login", privateRoute: false, element: <Login /> },
+    { path: "/register", privateRoute: false, element: <Register /> },
+    // Private
+    { path: "/lobby", privateRoute: true, element: <Lobby /> },
+    { path: "/match", privateRoute: true, element: <Match /> },
+    { path: "/versus", privateRoute: true, element: <Versus /> },
+    { path: "/versus/:id", privateRoute: true, element: <Match /> },
+
+    { path: "/history", privateRoute: true, element: <History /> },
+    { path: "/settings", privateRoute: true, element: <Settings /> },
+    // Not Found
     {
       path: "*",
-      private: false,
+      privateRoute: false,
       element: <ExceptionPage headerText="Page not found" />,
     },
   ];

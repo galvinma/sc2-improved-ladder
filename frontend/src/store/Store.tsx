@@ -1,14 +1,15 @@
 import { create } from "zustand";
 
 interface State {
-  // Auth
-  userId: string;
+  email: string;
   token: string;
+  firstName: string;
+  lastName: string;
 }
 
 export const Store = create<State>(() => ({
-  // Auth
+  email: "",
   token: "",
-  // User
-  userId: "",
+  firstName: "",
+  lastName: "",
 }));

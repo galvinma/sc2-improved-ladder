@@ -12,15 +12,17 @@ interface NavbarProps {
 
 export default function Navbar({ authenticated }: NavbarProps): JSX.Element {
   return (
-    <Box>
-      <AppBar
-        className={navbarStyles.appBar}
-        elevation={0}
-        style={{ background: "transparent", boxShadow: "none" }}
-      >
+    <Box
+      className={navbarStyles.appBar}
+      style={{
+        boxShadow: "none",
+        position: "sticky",
+      }}
+    >
+      <Box className={navbarStyles.toolbarWrapper}>
         {authenticated ? <InternalNavbar /> : <ExternalNavbar />}
-        <GradientBar />
-      </AppBar>
+      </Box>
+      <GradientBar />
     </Box>
   );
 }

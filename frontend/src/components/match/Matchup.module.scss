@@ -1,0 +1,122 @@
+@use '../.././styles/App.module.scss' as app;
+@use '../.././styles/Variables.module.scss' as vars;
+
+
+.playerLabel {
+    writing-mode: vertical-rl;
+    text-align: center;
+
+}
+
+.matchupGridWrapper {
+    display: flex;
+    flex-direction: row; 
+}
+
+.matchupContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.matchupRow {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+.matchupRowHeader {
+    min-height: 1.25 * vars.$marginSpacing;
+    min-width: 2* vars.$tabSpacing;
+    display: flex;
+    align-items: center;
+
+}
+
+
+.matchupColHeader {
+    min-width: 1.25 * vars.$marginSpacing;
+    display: flex;
+    justify-content: center;
+    border: 1px solid transparent;
+
+}
+
+.matchupColumnRowContainer{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2* vars.$tabSpacing;
+    // min-height: 2* vars.$tabSpacing;
+}
+
+
+
+
+
+.matchupCellBase {
+    min-width: 1.25 * vars.$marginSpacing;
+    min-height: 1.25 * vars.$marginSpacing;
+    border: 1px solid vars.$dividerGray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.matchupCellContainer {
+    @extend .matchupCellBase;
+    border: 1px solid vars.$dividerGray;
+}
+
+.matchupCellContainerZerg {
+    @extend .matchupCellContainer;
+    background-color: vars.$zergPurpleBackground;
+}
+
+.matchupCellContainerTerran {
+    @extend .matchupCellContainer;
+    background-color: vars.$terranBlueBackground;
+}
+
+.matchupCellContainerProtoss {
+    @extend .matchupCellContainer;
+    background-color: vars.$protossYellowBackground;
+}
+
+.matchupCellContainerRandom{
+    @extend .matchupCellContainer;
+    background-color: vars.$randomGrayBackground;
+}
+
+
+
+
+.verseText {
+    margin-left: vars.$indentSpacing;
+    margin-right: vars.$indentSpacing;
+}
+
+.verseTextActive {
+    font-weight: 900;
+}
+
+.verseTextZerg {
+    @extend .verseTextActive;
+    color: vars.$zergPurple;
+}
+
+.verseTextTerran {
+    @extend .verseTextActive;
+    color: vars.$terranBlue;
+}
+
+.verseTextProtoss {
+    @extend .verseTextActive;
+    color: vars.$protossYellow;
+}
+
+.verseTextRandom {
+    @extend .verseTextActive;
+    color: vars.$randomGray;
+}

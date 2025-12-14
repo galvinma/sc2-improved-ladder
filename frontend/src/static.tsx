@@ -1,4 +1,5 @@
 // General
+export const APPLICATION_TIMEOUT = 1000 * 60;
 export const CONTACT_EMAIL = "TODO";
 
 // Routing
@@ -7,10 +8,13 @@ export const API_URL: string =
 
 // Browser
 export const DOCUMENT_TITLES: Record<string, string> = {
-  Landing: "/landing",
-  Ladder: "/ladder",
   Lobby: "/lobby",
+  Versus: "/versus",
+  Stats: "/stats",
   FAQ: "/faq",
+  History: "/history",
+  Setting: "/settings",
   Match: "/match",
-  "Not Found": "not-found",
+  Login: "/login",
+  Register: "/register",
 };

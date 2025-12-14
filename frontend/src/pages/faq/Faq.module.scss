@@ -1,0 +1,11 @@
+@use '../.././styles/App.module.scss' as app;
+@use '../.././styles/Variables.module.scss' as vars;
+
+
+.sectionContainer {
+    margin-bottom: vars.$tabSpacing;
+}
+
+.sectionTitle {
+    color: vars.$secondaryBlue;
+}

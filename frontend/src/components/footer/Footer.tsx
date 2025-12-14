@@ -5,6 +5,7 @@ import footerStyles from "./Footer.module.scss";
 import { getAppFooterHeight } from "../.././funcs/spacing";
 import * as React from "react";
 import appStyles from "../.././styles/App.module.scss";
+import type { JSX } from "react";
 
 export default function Footer(): JSX.Element {
   return (
@@ -19,7 +20,7 @@ export default function Footer(): JSX.Element {
         style={{ height: getAppFooterHeight() }}
       >
         <Typography component={"div"} variant="overline">
-          Starcraft2 Improved Ladder (2025 - {new Date().getFullYear()})
+          Starcraft II Improved Ladder (2025 - {new Date().getFullYear()})
         </Typography>
       </Paper>
     </Box>

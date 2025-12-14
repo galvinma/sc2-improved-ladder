@@ -29,6 +29,10 @@ body {
     font-weight: vars.$bold;
 }
 
+.whiteBackground {
+    background-color: vars.$primaryWhite;
+}
+
 .noWrap {
     white-space: nowrap;
 }
@@ -55,6 +59,14 @@ body {
 
 .paragraphSpacing {
     margin-bottom: vars.$indentSpacing;
+}
+
+.pageTitle {
+    font-size: 2.5rem;
+    color: vars.$secondaryBlue;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: vars.$tabSpacing;
 }
 
 // Position

@@ -2,7 +2,7 @@ import type { JSX } from "react";
 
 export interface RouteProps {
   path: string;
-  private: boolean;
+  privateRoute: boolean;
   element: JSX.Element;
 }
 

@@ -1,15 +1,21 @@
-// Global inline styles
-
 import {
+  getPageMarginsPaddingLeftRight,
   getPageMarginsPaddingTop,
   getPageWrapperHeight,
 } from ".././funcs/spacing";
 
 export const pageWrapper = {
+  minHeight: getPageWrapperHeight(),
+  marginLeft: getPageMarginsPaddingLeftRight(),
+  marginRight: getPageMarginsPaddingLeftRight(),
+  marginTop: getPageMarginsPaddingTop(),
+};
+
+export const centerContent = {
   height: "100%",
   minHeight: getPageWrapperHeight(),
-  paddingTop: getPageMarginsPaddingTop(),
   display: "flex",
-  justifyContent: "flex-start",
-  alignContent: "flex-start",
+  justifyContent: "center",
+  alignContent: "center",
+  marginTop: getPageMarginsPaddingTop(),
 };

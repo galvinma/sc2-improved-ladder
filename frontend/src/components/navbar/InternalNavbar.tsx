@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import BugReport from "@mui/icons-material/BugReport";
+import Email from "@mui/icons-material/EmailOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Typography } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,7 +9,7 @@ import NavbarActionButton from "./NavbarActionButton";
 import NavbarActions from "./NavbarActions";
 import NavbarLogo from "./NavbarLogo";
 import NavbarTabs from "./NavbarTabs";
-import { handleSignOut } from "../.././funcs/auth";
+import { handleLogout } from "../.././funcs/auth";
 
 import React from "react";
 import appStyles from "../.././styles/App.module.scss";
@@ -23,7 +23,7 @@ export default function InternalNavbar(): JSX.Element {
   return (
     <Toolbar className={navbarStyles.toolBar}>
       <NavbarLogo />
-      <NavbarTabs tabs={["Lobby", "Ladder", "Stats", "Faq"]} />
+      <NavbarTabs tabs={["Lobby", "Versus", "Stats", "History", "Settings"]} />
       <NavbarActions
         navbarActions={[
           <NavbarActionButton
@@ -40,11 +40,11 @@ export default function InternalNavbar(): JSX.Element {
                 Log Out
               </Typography>
             }
-            onClickFunc={handleSignOut}
+            onClickFunc={handleLogout}
           />,
           <NavbarActionButton
-            key={"reportBug"}
-            icon={<BugReport className={navbarStyles.navIcon} />}
+            key={"contact"}
+            icon={<Email className={navbarStyles.navIcon} />}
             text={
               <Typography
                 variant="button"
@@ -53,7 +53,7 @@ export default function InternalNavbar(): JSX.Element {
                   appStyles.primaryFont,
                 ].join(" ")}
               >
-                Report Bug
+                Contact Us
               </Typography>
             }
             onClickFunc={openEmailClient}

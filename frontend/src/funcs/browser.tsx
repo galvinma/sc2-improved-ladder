@@ -16,11 +16,17 @@ export function parseCookies(): Record<string, string> {
 export const setDocumentTitle = (): void => {
   let pageTitle = "Not Found";
   const pathname = window?.location?.pathname ?? "";
-  for (const title in DOCUMENT_TITLES) {
-    const titlePath = DOCUMENT_TITLES[title];
-    if (pathname.includes(titlePath)) {
-      pageTitle = title;
-      break;
+
+  if (pathname == "/") {
+    pageTitle = "";
+  } else {
+    pageTitle = "Not Found";
+    for (const title in DOCUMENT_TITLES) {
+      const titlePath = DOCUMENT_TITLES[title];
+      if (pathname.includes(titlePath)) {
+        pageTitle = title;
+        break;
+      }
     }
   }
 
@@ -28,5 +34,7 @@ export const setDocumentTitle = (): void => {
 };
 
 export const getPageTitle = (name: string): string => {
-  return `SC2 Improved Ladder - ${name}`;
+  return name.length === 0
+    ? "Starcraft II Improved Ladder"
+    : `${name} | Starcraft II Improved Ladder`;
 };

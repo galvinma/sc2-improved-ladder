@@ -10,7 +10,11 @@ export default function Stats(): JSX.Element {
       className={[appStyles.whiteBackground, appStyles.flexCol].join(" ")}
       style={{ ...pageWrapper }}
     >
-      <Typography variant="h1">Stats</Typography>
+      <Box className={appStyles.paragraphSpacing}>
+        <Typography variant="h2" className={appStyles.pageTitle}>
+          Stats
+        </Typography>
+      </Box>
     </Box>
   );
 }

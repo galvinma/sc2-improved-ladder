@@ -1,0 +1,38 @@
+@use '../.././styles/App.module.scss' as app;
+@use '../.././styles/Variables.module.scss' as vars;
+
+
+.actionButton {
+    width: 150px;
+}
+
+.actionButtonContainer {
+    margin-top: vars.$tabSpacing;
+    margin-bottom: vars.$tabSpacing;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.formControlContainer {
+    margin-bottom: vars.$tabSpacing;
+}
+
+.formWrapper{
+    background-color: vars.$primaryWhite;
+    border-radius: vars.$indentSpacing;
+    border: solid 1.5px vars.$primaryBlue;
+    padding: vars.$tabSpacing;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    min-width: 400px;
+    padding: vars.$gutterSpacing;
+    margin-right: auto;
+    margin-left: auto;
+}

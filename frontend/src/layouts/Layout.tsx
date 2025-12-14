@@ -1,51 +1,65 @@
-import ".././styles/App.module.scss";
-
 import Box from "@mui/material/Box";
-
-import React, { useEffect, type JSX } from "react";
-import { Outlet } from "react-router";
+import React, { useEffect, useState, type JSX } from "react";
+import { Navigate, Outlet, useLocation } from "react-router";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
 import { setDocumentTitle } from "../funcs/browser";
-import { checkAuthenticated } from "../funcs/auth";
+import { verifyToken } from "../funcs/auth";
+import Loading from "../pages/loading/Loading";
+import { pageWrapper } from "../styles/InlineStyles";
 
-interface LayoutProps {
-  private: boolean;
+interface layoutProps {
+  privateRoute: boolean;
 }
 
-export default function Layout(props: LayoutProps): JSX.Element {
-  const [authenticated, setAuthenticated] = React.useState(false);
+export default function Layout(props: layoutProps): JSX.Element {
+  const location = useLocation();
+  const [appState, setAppState] = useState({
+    loaded: false,
+    authenticated: false,
+  });
 
   useEffect(() => {
+    console.log(
+      `Pathname=${location.pathname}. Private?=${props.privateRoute}`
+    );
     setDocumentTitle();
-    checkAuthenticated()
+    verifyToken()
       .then(() => {
-        console.debug("User passed auth check. Will render private content.");
-        setAuthenticated(true);
+        setAppState({
+          loaded: true,
+          authenticated: true,
+        });
       })
-      .catch((err) => {
-        console.debug(err);
-        if (props.private) {
-          const redirectUrl = "login";
-          console.debug(
-            `User failed auth check for private route. Will redirect to ${redirectUrl}.`,
-          );
-          window.location.replace(redirectUrl);
-        }
+      .catch(() => {
+        setAppState({
+          loaded: true,
+          authenticated: false,
+        });
       });
-  }, [props]);
+  }, [location, props.privateRoute]);
+
+  const renderContent = (): JSX.Element => {
+    if (appState.loaded) {
+      if (props.privateRoute === true && appState.authenticated === false) {
+        return (
+          <Box style={{ ...pageWrapper }}>
+            <Navigate to="/login" />;
+          </Box>
+        );
+      } else {
+        return <Outlet />;
+      }
+    } else {
+      return <Loading />;
+    }
+  };
 
   return (
     <Box>
-      <Box>
-        <Navbar authenticated={authenticated} />
-        {(authenticated && props.private) || !props.private ? (
-          <Outlet />
-        ) : (
-          <Box>{"Loading..."}</Box>
-        )}
-        <Footer />
-      </Box>
+      <Navbar authenticated={appState.authenticated} />
+      {renderContent()}
+      <Footer />
     </Box>
   );
 }

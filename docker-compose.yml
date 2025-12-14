@@ -3,8 +3,44 @@ services:
     container_name: sc2-improved-ladder-frontend
     restart: unless-stopped
     image: sc2-improved-ladder-frontend:latest
+    command: npm run dev
+    volumes:
+      - ./frontend/src:/app/src
     ports:
       - "5173:5173"
+    networks:
+      - sc2-improved-ladder-network
+    environment:
+      - WATCHPACK_POLLING=true 
+
+  sc2-improved-ladder-backend:
+    container_name: sc2-improved-ladder-backend
+    image: sc2-improved-ladder-backend:latest
+    command: python -m api.main 
+    ports:
+      - "127.0.0.1:5000:5000"
+    volumes:
+      - .env:/app/.env
+      - ./log:/app/log
+      - ./backend:/app/backend
+    env_file: ./backend/.env
+    networks:
+      - sc2-improved-ladder-network
+
+  sc2-improved-ladder-db:
+    container_name:   sc2-improved-ladder-db
+    restart: unless-stopped
+    image:   sc2-improved-ladder-db:latest
+    command: >-
+      -p ${SC2_IMPROVED_LADDER_PG_PORT}
+    environment:
+      POSTGRES_DB: ${SC2_IMPROVED_LADDER_PG_DB}
+      POSTGRES_USER: ${SC2_IMPROVED_LADDER_PG_USER}
+      POSTGRES_PASSWORD: ${SC2_IMPROVED_LADDER_PG_PASSWORD}
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      - "${SC2_IMPROVED_LADDER_PG_PORT}:${SC2_IMPROVED_LADDER_PG_PORT}"
     networks:
       - sc2-improved-ladder-network
 

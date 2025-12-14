@@ -9,7 +9,11 @@ export default function Landing(): JSX.Element {
       className={[appStyles.whiteBackground, appStyles.flexCol].join(" ")}
       style={{ ...pageWrapper }}
     >
-      <Typography variant="h1">Landing</Typography>
+      <Box className={appStyles.paragraphSpacing}>
+        <Typography variant="h2" className={appStyles.pageTitle}>
+          Landing
+        </Typography>
+      </Box>
     </Box>
   );
 }

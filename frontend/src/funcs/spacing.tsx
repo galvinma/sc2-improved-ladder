@@ -11,14 +11,19 @@ export const getAppFooterHeight = () => {
 };
 
 export const getPageMarginsPaddingTop = () => {
-  return spacing.convertRemToPixels(variables.appBarHeight);
+  return spacing.convertRemToPixels(variables.tabSpacing);
+};
+
+export const getPageMarginsPaddingLeftRight = () => {
+  return spacing.convertRemToPixels(variables.appMargins);
 };
 
 export const getPageWrapperHeight = () => {
   return (
     window.innerHeight -
     spacing.getAppBarHeight() -
-    spacing.getAppFooterHeight()
+    spacing.getAppFooterHeight() -
+    spacing.getPageMarginsPaddingTop()
   );
 };
 
