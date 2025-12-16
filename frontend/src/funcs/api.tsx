@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { type AxiosError, type AxiosResponse } from "axios";
 import type { requestArgs } from "../interfaces/interfaces";
-import { Store } from "../store/Store";
 
 export const getData = async ({
   endpoint,
@@ -35,6 +34,26 @@ export const postData = async ({
     console.debug(`Sending POST request to ${url}`);
     axios
       .post(url, data, constructHeaders())
+      .then((res: AxiosResponse) => {
+        resolve(res);
+      })
+      .catch((err: AxiosError) => {
+        reject(err);
+      });
+  });
+};
+
+export const putData = async ({
+  endpoint,
+  data,
+}: requestArgs): Promise<AxiosResponse> => {
+  return await new Promise((resolve, reject) => {
+    const url = constructURL({
+      endpoint,
+    });
+    console.debug(`Sending PUT request to ${url}`);
+    axios
+      .put(url, data, constructHeaders())
       .then((res: AxiosResponse) => {
         resolve(res);
       })

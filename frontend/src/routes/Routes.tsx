@@ -24,7 +24,7 @@ export function getRoutes(): RoutePropsList {
     { path: "/lobby", privateRoute: true, element: <Lobby /> },
     { path: "/match", privateRoute: true, element: <Match /> },
     { path: "/versus", privateRoute: true, element: <Versus /> },
-    { path: "/versus/:id", privateRoute: true, element: <Match /> },
+    { path: "/match/:id", privateRoute: true, element: <Match /> },
 
     { path: "/history", privateRoute: true, element: <History /> },
     { path: "/settings", privateRoute: true, element: <Settings /> },

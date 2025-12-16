@@ -1,4 +1,3 @@
-import Paper from "@mui/material/Paper";
 import tableStyles from "./Table.module.scss";
 import * as React from "react";
 import Table from "@mui/material/Table";
@@ -8,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import type { JSX } from "react";
-import { TableSortLabel, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { SortDirection } from "../../enums/enums";
 import type { TableHeader } from "./TableInterfaces";
 
@@ -60,9 +59,9 @@ export default function BasicTable(props: TableProps): JSX.Element {
             size={header.size}
           >
             <Typography variant="body2">{text}</Typography>
-          </TableCell>
+          </TableCell>,
         );
-      }
+      },
     );
 
     return (
@@ -86,7 +85,7 @@ export default function BasicTable(props: TableProps): JSX.Element {
           <TableCell>
             <Typography variant="body2">{row.race}</Typography>
           </TableCell>
-        </TableRow>
+        </TableRow>,
       );
     });
 

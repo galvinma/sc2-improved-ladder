@@ -7,10 +7,10 @@ import Layout from "./layouts/Layout";
 function App() {
   const routes = getRoutes();
   const publicRoutes = routes.filter(
-    (route: RouteProps) => !route.privateRoute
+    (route: RouteProps) => !route.privateRoute,
   );
   const privateRoutes = routes.filter(
-    (route: RouteProps) => route.privateRoute
+    (route: RouteProps) => route.privateRoute,
   );
 
   return (

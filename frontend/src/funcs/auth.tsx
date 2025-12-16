@@ -28,7 +28,7 @@ export const handleLogout = (): void => {
 
 export async function handleLogin(
   email: string,
-  password: string
+  password: string,
 ): Promise<boolean> {
   return await new Promise((resolve, reject) => {
     console.debug("Attempting to login user...");
@@ -63,7 +63,7 @@ export async function handleRegistration(
   firstName: string,
   lastName: string,
   password: string,
-  confirmPassword: string
+  confirmPassword: string,
 ): Promise<boolean> {
   return await new Promise((resolve, reject) => {
     console.debug("Attempting to register new user...");

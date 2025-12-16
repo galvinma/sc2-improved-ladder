@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import React, { useEffect, useLayoutEffect, useState, type JSX } from "react";
+import React, { useEffect, useState, type JSX } from "react";
 import { Navigate, Outlet, useLocation } from "react-router";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
@@ -21,8 +21,8 @@ export default function Layout(props: layoutProps): JSX.Element {
   });
 
   useEffect(() => {
-    console.log(
-      `Pathname=${location.pathname}. Private?=${props.privateRoute}`
+    console.debug(
+      `Pathname=${location.pathname}. Private?=${props.privateRoute}`,
     );
     setDocumentTitle();
     verifyToken()

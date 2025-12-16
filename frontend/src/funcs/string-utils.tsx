@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export function objectSnakeCaseToCamelCase(target: any): any {
   if (target === null) {
     return target;
@@ -44,4 +46,22 @@ export function snakeCaseToCamelCase(target: string): string {
   return target
     .toLowerCase()
     .replace(/[-_][a-z0-9]/g, (group) => group.slice(-1).toUpperCase());
+}
+
+export function handleCommas(target: string[]): string {
+  if (target.length === 1) {
+    return target[0];
+  } else if (target.length === 2) {
+    return `${target[0]} and ${target[1]}`;
+  } else {
+    let formattedString = "";
+    target.forEach((word, index) => {
+      if (index === target.length - 1) {
+        formattedString += `and ${word}`;
+      } else {
+        formattedString += `${word}, `;
+      }
+    });
+    return formattedString;
+  }
 }

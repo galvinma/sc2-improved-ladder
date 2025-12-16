@@ -1,11 +1,19 @@
+import enum
 import logging
 from typing import List, Optional
 
-from sqlalchemy import ARRAY, Column, Enum, ForeignKey, UniqueConstraint
+from enums import MatchRequestStatus, MatchUp
+from sqlalchemy import (
+    ARRAY,
+    Column,
+    DateTime,
+    ForeignKey,
+    String,
+    UniqueConstraint,
+    func,
+)
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy.dialects import postgresql
-from enums import MatchStatus, MatchUp, Race
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 logger = logging.getLogger("__name__")
 
@@ -21,12 +29,21 @@ class Base(DeclarativeBase):
     pass
 
     def as_dict(self):
-        return {field.name: getattr(self, field.name) for field in self.__table__.c}
+        return {
+            field.name: (
+                getattr(self, field.name)
+                if not isinstance(getattr(self, field.name), enum.Enum)
+                else str(getattr(self, field.name).value)
+            )
+            for field in self.__table__.c
+        }
 
 
 class User(Base):
     __tablename__ = "user"
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
     email: Mapped[str] = mapped_column(unique=True, nullable=False)
     password: Mapped[str] = mapped_column()
     first_name: Mapped[str] = mapped_column()
@@ -36,8 +53,7 @@ class User(Base):
     clan_name: Mapped[Optional[str]] = mapped_column()
     clan_tag: Mapped[Optional[str]] = mapped_column()
 
-    # match_requests: Mapped[List["MatchRequest"]] = relationship(back_populates="user")
-    # character_mmrs: Mapped[List["UserMMR"]] = relationship(back_populates="user")
+    match_requests: Mapped[List["MatchRequest"]] = relationship(back_populates="user")
 
     UniqueConstraint(email, name=USER_UNIQUE_CONSTRAINT)
 
@@ -49,6 +65,26 @@ class User(Base):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+
+class MatchRequest(Base):
+    __tablename__ = "match_request"
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    ranked: Mapped[bool] = mapped_column()
+    matchups: Mapped[list[MatchUp]] = mapped_column(ARRAY(String))
+    status: Mapped[MatchRequestStatus] = mapped_column()
+
+    user_id = mapped_column(ForeignKey("user.id"))
+    user: Mapped[User] = relationship(back_populates="match_requests")
+
+
+# class Match(Base):
+#     __tablename__ = "match"
+#     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+#     created_at = Column(DateTime, default=func.now())
+#     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
 
 
 # class UserMMR(Base):
@@ -72,23 +108,6 @@ class User(Base):
 #             + f"date={self.date!r}"
 #             + ")"
 #         )
-
-
-# class MatchRequest(Base):
-#     __tablename__ = "match_request"
-#     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-#     date: Mapped[int] = mapped_column()
-#     ranked: Mapped[bool] = mapped_column()
-#     matchups: Mapped[list[MatchUp]] = mapped_column(ARRAY(Enum(MatchUp, native_enum=True)), nullable=False)
-#     status: Mapped[Status] = mapped_column()
-
-#     user_id = mapped_column(ForeignKey("user.id"))
-#     user: Mapped[User] = relationship(back_populates="match_requests")
-
-
-# class Match(Base):
-#     __tablename__ = "match"
-#     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
 
 def table_name_to_model(table_name):

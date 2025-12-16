@@ -4,10 +4,9 @@ from contextlib import contextmanager
 
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
+from sqlalchemy import update as sqlalchemy_update
 from sqlalchemy.orm import Session
-
 from utils.concurrency import thread_pool_max_workers
-
 
 load_dotenv()
 
@@ -96,14 +95,26 @@ def query(
         return res
 
 
-def create(instance, engine=None):
+def create(instance, engine=None, as_dict=False):
     if engine is None:
         engine = ENGINE
 
     with session_scope(engine=ENGINE) as session:
         session.add(instance)
         session.commit()
-        return instance
+        return instance.as_dict() if as_dict else instance
+
+
+def update(model, where, values):
+    with session_scope(engine=ENGINE) as session:
+        stmt = sqlalchemy_update(model)
+        if where:
+            for condition in where:
+                logger.info(condition)
+                stmt = stmt.filter(condition)
+
+        stmt = stmt.values(values)
+        session.execute(stmt)
 
 
 def orm_classes_as_dict(iterable):

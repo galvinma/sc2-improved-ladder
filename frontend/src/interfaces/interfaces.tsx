@@ -1,6 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-
-import type { JSX } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export type genericObject = Record<
   string,

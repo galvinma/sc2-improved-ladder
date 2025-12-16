@@ -11,7 +11,7 @@ export default function NavbarLogo(): JSX.Element {
   return (
     <Box
       className={[navbarStyles.logoContainer, appStyles.cursorPointer].join(
-        " "
+        " ",
       )}
       onClick={() => navigate("/")}
     >
