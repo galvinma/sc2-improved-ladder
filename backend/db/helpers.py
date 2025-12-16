@@ -110,7 +110,6 @@ def update(model, where, values):
         stmt = sqlalchemy_update(model)
         if where:
             for condition in where:
-                logger.info(condition)
                 stmt = stmt.filter(condition)
 
         stmt = stmt.values(values)
