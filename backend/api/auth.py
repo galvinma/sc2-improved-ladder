@@ -1,15 +1,15 @@
 import logging
-from flask import Blueprint, request, jsonify
+
+from db.helpers import create
+from db.model import User
+from db.query.user import query_user
+from flask import Blueprint, jsonify, request
 from flask_jwt_extended import (
     create_access_token,
-    get_jwt_identity,
-    unset_jwt_cookies,
+    current_user,
     jwt_required,
+    unset_jwt_cookies,
 )
-from more_itertools import one
-
-from backend.db.helpers import create, query
-from backend.db.model import User
 
 logger = logging.getLogger(__name__)
 
@@ -19,9 +19,7 @@ auth = Blueprint("auth", __name__)
 @auth.route("/register", methods=["POST"])
 def register():
     data = request.json
-    logger.info(data)
 
-    # TODO confirm password match
     password = data.get("password")
     confirm_password = data.get("confirmPassword")
     if not password == confirm_password:
@@ -43,14 +41,7 @@ def register():
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    user = one(
-        query(
-            params={User},
-            filters=[User.email == email],
-        ),
-        too_short=None,
-    )
-
+    user = query_user(email)
     if not user or not user.check_password(password):
         return jsonify("Wrong username or password"), 401
 
@@ -62,13 +53,10 @@ def login():
 def logout():
     response = jsonify({"msg": "logout successful"})
     unset_jwt_cookies(response)
-    return jsonify({"msg": "logout successful"})
+    return response
 
 
 @auth.route("/verify_token", methods=["GET"])
 @jwt_required()
 def verify_token():
-    current_user = get_jwt_identity()
-    logger.info(f"Verifying token. {current_user=}")
-
-    return jsonify(logged_in_as=current_user), 200
+    return jsonify(logged_in_as=current_user.email), 200

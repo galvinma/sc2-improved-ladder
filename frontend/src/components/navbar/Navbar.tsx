@@ -1,4 +1,3 @@
-import { AppBar } from "@mui/material";
 import Box from "@mui/material/Box";
 import ExternalNavbar from "./ExternalNavbar";
 import GradientBar from "./GradientBar";

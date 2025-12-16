@@ -1,0 +1,7 @@
+@use '../.././styles/App.module.scss' as app;
+@use '../.././styles/Variables.module.scss' as vars;
+
+
+.userSettingsValue {
+    margin-left: vars.$indentSpacing;
+}

@@ -73,7 +73,7 @@ export default function Faq(): JSX.Element {
             </Typography>
           </Box>
           {section.content}
-        </Box>
+        </Box>,
       );
     });
     return sections;

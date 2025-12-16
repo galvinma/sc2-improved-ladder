@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "http://sc2-improved-ladder-backend:5000",
+      "/api": "http://sc2-improved-ladder-api:5000",
     },
     watch: {
       usePolling: true,

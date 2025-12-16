@@ -1,0 +1,12 @@
+@use '../.././styles/App.module.scss' as app;
+@use '../.././styles/Variables.module.scss' as vars;
+
+
+.actionButton {
+    min-width: 250px;
+}
+
+.actionButtonContainer {
+    margin-top: vars.$tabSpacing;
+    margin-bottom: vars.$tabSpacing;
+}

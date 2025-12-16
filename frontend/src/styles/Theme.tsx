@@ -32,5 +32,5 @@ export const Theme = responsiveFontSizes(
         main: variables.primaryBlack,
       },
     },
-  })
+  }),
 );

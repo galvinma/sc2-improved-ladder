@@ -16,5 +16,6 @@ COPY alembic.ini /app/alembic.ini
 COPY alembic /app/alembic
 COPY api /app/api
 COPY db /app/db
+COPY matchmaker /app/matchmaker
 COPY test /app/test
 COPY utils /app/utils

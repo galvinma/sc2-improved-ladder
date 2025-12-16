@@ -1,6 +1,24 @@
 @use '../.././styles/App.module.scss' as app;
 @use '../.././styles/Variables.module.scss' as vars;
 
+.sectionHeader {
+    font-size: 2rem;
+    color: vars.$secondaryBlue;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: vars.$indentSpacing;
+}
+
+.raceChip {
+    margin-right: vars.$wedgeSpacing;
+    cursor: pointer;
+}
+
+.matchupHelperTextContainer{
+    margin-top: vars.$tabSpacing;
+}
+
+
 
 .playerLabel {
     writing-mode: vertical-rl;
@@ -43,10 +61,6 @@
     flex-direction: row;
     margin-left: 2* vars.$tabSpacing;
 }
-
-
-
-
 
 .matchupCellBase {
     min-width: 1.25 * vars.$marginSpacing;
@@ -113,4 +127,8 @@
 .verseTextRandom {
     @extend .verseTextActive;
     color: vars.$randomGray;
+}
+
+.searchTextContainer {
+    margin-left: vars.$tabSpacing;
 }

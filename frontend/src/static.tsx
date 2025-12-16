@@ -6,6 +6,9 @@ export const CONTACT_EMAIL = "TODO";
 export const API_URL: string =
   import.meta.env.VITE_SC2_IMPROVED_LADDER_API_URL ?? "";
 
+// Versus
+export const VERSUS_SEARCH_INTERVAL = 5000;
+
 // Browser
 export const DOCUMENT_TITLES: Record<string, string> = {
   Lobby: "/lobby",

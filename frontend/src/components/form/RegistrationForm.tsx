@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import formStyles from "./Form.module.scss";
+import buttonStyles from ".././Button/Button.module.scss";
 import appStyles from "../.././styles/App.module.scss";
 import * as React from "react";
 import { useState, type JSX } from "react";
@@ -95,18 +96,18 @@ export default function RegistrationForm(): JSX.Element {
           />
         </FormControl>
       </Box>
-      <Box className={formStyles.actionButtonContainer}>
+      <Box className={buttonStyles.actionButtonContainer}>
         <Button
           variant="contained"
           disableElevation
-          className={formStyles.actionButton}
+          className={buttonStyles.actionButton}
           onClick={() =>
             handleRegistration(
               email,
               firstName,
               lastName,
               password,
-              confirmPassword
+              confirmPassword,
             )
           }
         >
