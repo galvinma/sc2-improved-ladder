@@ -29,7 +29,14 @@ jobs:
         if [ -f backend/requirements.dev.txt ]; then pip install -r backend/requirements.dev.txt; fi
     - name: autoflake
       run: |
-        autoflake --in-place --expand-star-imports --remove-duplicate-keys --remove-unused-variables --remove-all-unused-imports
+        autoflake \
+          --in-place \
+          --expand-star-imports \
+          --remove-duplicate-keys \
+          --remove-unused-variables \
+          --remove-all-unused-imports \
+          --recursive \
+          .
     - name: black
       run: |
         black --line-length=120
