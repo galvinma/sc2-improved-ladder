@@ -10,12 +10,13 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install -r /app/requirements.txt
 
 COPY static.py /app/static.py
-COPY enums.py /app/enums.py
 COPY alembic.ini /app/alembic.ini
 
 COPY alembic /app/alembic
 COPY api /app/api
 COPY db /app/db
+COPY decorators /app/decorators
+COPY enums /app/enums
 COPY matchmaker /app/matchmaker
 COPY test /app/test
 COPY utils /app/utils

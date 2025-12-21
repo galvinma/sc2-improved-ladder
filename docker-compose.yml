@@ -20,10 +20,11 @@ services:
     ports:
       - "127.0.0.1:5000:5000"
     volumes:
-      - ./backend/enums.py:/app/enums.py
       - ./backend/static.py:/app/static.py
       - ./backend/api:/app/api
       - ./backend/db:/app/db
+      - ./backend/decorators:/app/decorators
+      - ./backend/enums:/app/enums
       - ./backend/matchmaker:/app/matchmaker
       - ./backend/utils:/app/utils
     env_file: ./backend/.env
@@ -34,12 +35,13 @@ services:
   sc2-improved-ladder-matchmaker:
     container_name: sc2-improved-ladder-matchmaker
     image: sc2-improved-ladder-backend:latest
-    command: python -m matchmaker.main  -s
+    command: python -m matchmaker.schedule  -s
     volumes:
-      - ./backend/enums.py:/app/enums.py
       - ./backend/static.py:/app/static.py
       - ./backend/api:/app/api
       - ./backend/db:/app/db
+      - ./backend/decorators:/app/decorators
+      - ./backend/enums:/app/enums
       - ./backend/matchmaker:/app/matchmaker
       - ./backend/utils:/app/utils
     env_file: ./backend/.env

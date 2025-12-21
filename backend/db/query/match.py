@@ -1,13 +1,13 @@
 from db.helpers import query
-from db.model import MatchRequest
+from db.model import Match
 from more_itertools import one
 
 
-def query_match_request(match_request_id):
+def query_match_by_id(match_id):
     return one(
         query(
-            params={MatchRequest},
-            filters=[MatchRequest.id == match_request_id],
+            params={Match},
+            filters=[Match.id == match_id],
         ),
         too_short=None,
     )

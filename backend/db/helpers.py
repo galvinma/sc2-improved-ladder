@@ -31,14 +31,15 @@ ENGINE = get_engine()
 
 
 @contextmanager
-def session_scope(engine=None):
+def session_scope(engine=None, expire_on_commit=False):
     if not engine:
         engine = ENGINE
 
-    session = Session(bind=engine)
+    session = Session(bind=engine, expire_on_commit=expire_on_commit)
     try:
         yield session
         session.commit()
+        session.expunge_all()
     except Exception:
         session.rollback()
         raise
@@ -53,12 +54,15 @@ def query(
     filter_by=None,
     distinct=None,
     options=None,
+    values=None,
+    column=None,
     group_by=None,
     order_by=None,
     limit=None,
     count=None,
+    expire_on_commit=False,
 ):
-    with session_scope(engine=ENGINE) as session:
+    with session_scope(engine=ENGINE, expire_on_commit=expire_on_commit) as session:
         stmt = session.query(*params)
 
         if joins:
@@ -78,6 +82,9 @@ def query(
         if options:
             stmt.options(options)
 
+        if values is not None and column is not None:
+            stmt = stmt.filter(column.in_(values))
+
         if group_by is not None:
             stmt.group_by(*group_by)
 
@@ -91,29 +98,29 @@ def query(
             return stmt.count()
 
         res = stmt.all()
-        session.expunge_all()
         return res
 
 
-def create(instance, engine=None, as_dict=False):
+def create(instance, engine=None, as_dict=False, expire_on_commit=False):
     if engine is None:
         engine = ENGINE
 
-    with session_scope(engine=ENGINE) as session:
+    with session_scope(engine=ENGINE, expire_on_commit=expire_on_commit) as session:
         session.add(instance)
-        session.commit()
+        session.flush()
         return instance.as_dict() if as_dict else instance
 
 
-def update(model, where, values):
-    with session_scope(engine=ENGINE) as session:
+def update(model, values, where=None, expire_on_commit=False):
+    with session_scope(engine=ENGINE, expire_on_commit=expire_on_commit) as session:
         stmt = sqlalchemy_update(model)
-        if where:
-            for condition in where:
-                stmt = stmt.filter(condition)
+        if where is not None:
+            stmt = stmt.where(where)
 
         stmt = stmt.values(values)
+        logger.info(stmt)
         session.execute(stmt)
+        session.flush()
 
 
 def orm_classes_as_dict(iterable):

@@ -1,12 +1,25 @@
 import { Box, Typography } from "@mui/material";
-import React, { type JSX } from "react";
+import React, { useEffect, useState, type JSX } from "react";
 import appStyles from "../.././styles/App.module.scss";
 import { pageWrapper } from "../../styles/InlineStyles";
 import { useParams } from "react-router";
+import { getData } from "../../funcs/api";
 
 export default function Match(): JSX.Element {
   const { id } = useParams();
-  console.log(id);
+  const [map, setMap] = useState("");
+
+  useEffect(() => {
+    getData({
+      endpoint: `match/${id}`,
+    })
+      .then((res) => {
+        setMap(res.data.map);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 
   return (
     <Box
@@ -15,10 +28,13 @@ export default function Match(): JSX.Element {
     >
       <Box className={appStyles.paragraphSpacing}>
         <Typography variant="h2" className={appStyles.pageTitle}>
-          Versus
+          Match
         </Typography>
       </Box>
-      <Box className={appStyles.paragraphSpacing}></Box>
+      <Box className={appStyles.paragraphSpacing}>
+        <Box>{id}</Box>
+        <Box>{map}</Box>
+      </Box>
     </Box>
   );
 }

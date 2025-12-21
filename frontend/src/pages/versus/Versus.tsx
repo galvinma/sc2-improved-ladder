@@ -41,6 +41,7 @@ export default function Versus(): JSX.Element {
       .then((res) => {
         console.log(res);
         matchupRequestId.current = res.data.match_request_id;
+
         handlePolling();
       })
       .catch((err) => {
@@ -50,24 +51,26 @@ export default function Versus(): JSX.Element {
   };
 
   const cancelSearch = () => {
-    putData({
-      endpoint: `match_request/status/${matchupRequestId.current}`,
-      data: {
-        status: "CANCELED",
-      },
-    })
-      .then(() => {
-        setSearching(false);
-        matchupRequestId.current = null;
-        clearInterval(matchupIntervalId.current);
+    if (matchupRequestId.current !== null) {
+      putData({
+        endpoint: `match_request/status/${matchupRequestId.current}`,
+        data: {
+          status: "CANCELED",
+        },
       })
-      .catch(() => {});
+        .then(() => {
+          setSearching(false);
+          matchupRequestId.current = null;
+          clearInterval(matchupIntervalId.current);
+        })
+        .catch(() => {});
+    }
   };
 
   const handlePolling = () => {
     setSearching(true);
 
-    if (matchupRequestId !== null) {
+    if (matchupRequestId.current !== null) {
       matchupIntervalId.current = setInterval(() => {
         console.log("Getting match updates...");
         console.log(matchupRequestId.current);
@@ -75,9 +78,10 @@ export default function Versus(): JSX.Element {
           endpoint: `match_request/${matchupRequestId.current}`,
         })
           .then((res) => {
+            console.log(res);
             // TODO Handle a new match
             if (res.data.status === matchRequestStatus.FULFILLED) {
-              navigate("/match/${}");
+              navigate(`/match/${res.data.match_id}`);
             }
           })
           .catch((err) => {
@@ -164,7 +168,7 @@ export default function Versus(): JSX.Element {
       helpers.push(
         <Typography key={helperText} variant="body1">
           {helperText}
-        </Typography>,
+        </Typography>
       );
     }
 
@@ -175,7 +179,7 @@ export default function Versus(): JSX.Element {
     matchup: MatchUp,
     active: boolean,
     activeTextClass: string,
-    activeContainerClass: string,
+    activeContainerClass: string
   ): JSX.Element => {
     return (
       <Box
@@ -187,7 +191,7 @@ export default function Versus(): JSX.Element {
         <Typography
           variant="body1"
           className={[active ? activeTextClass : versusStyles.verseText].join(
-            " ",
+            " "
           )}
         >
           {matchup.toString()}
@@ -268,25 +272,25 @@ export default function Versus(): JSX.Element {
                   MatchUp.ZVZ,
                   matchups.includes(MatchUp.ZVZ),
                   versusStyles.verseTextZerg,
-                  versusStyles.matchupCellContainerZerg,
+                  versusStyles.matchupCellContainerZerg
                 )}
                 {getMatchupCell(
                   MatchUp.ZVT,
                   matchups.includes(MatchUp.ZVT),
                   versusStyles.verseTextZerg,
-                  versusStyles.matchupCellContainerZerg,
+                  versusStyles.matchupCellContainerZerg
                 )}
                 {getMatchupCell(
                   MatchUp.ZVP,
                   matchups.includes(MatchUp.ZVP),
                   versusStyles.verseTextZerg,
-                  versusStyles.matchupCellContainerZerg,
+                  versusStyles.matchupCellContainerZerg
                 )}
                 {getMatchupCell(
                   MatchUp.ZVR,
                   matchups.includes(MatchUp.ZVR),
                   versusStyles.verseTextZerg,
-                  versusStyles.matchupCellContainerZerg,
+                  versusStyles.matchupCellContainerZerg
                 )}
               </Box>
               <Box className={versusStyles.matchupRow}>
@@ -294,25 +298,25 @@ export default function Versus(): JSX.Element {
                   MatchUp.TVZ,
                   matchups.includes(MatchUp.TVZ),
                   versusStyles.verseTextTerran,
-                  versusStyles.matchupCellContainerTerran,
+                  versusStyles.matchupCellContainerTerran
                 )}
                 {getMatchupCell(
                   MatchUp.TVT,
                   matchups.includes(MatchUp.TVT),
                   versusStyles.verseTextTerran,
-                  versusStyles.matchupCellContainerTerran,
+                  versusStyles.matchupCellContainerTerran
                 )}
                 {getMatchupCell(
                   MatchUp.TVP,
                   matchups.includes(MatchUp.TVP),
                   versusStyles.verseTextTerran,
-                  versusStyles.matchupCellContainerTerran,
+                  versusStyles.matchupCellContainerTerran
                 )}
                 {getMatchupCell(
                   MatchUp.TVR,
                   matchups.includes(MatchUp.TVR),
                   versusStyles.verseTextTerran,
-                  versusStyles.matchupCellContainerTerran,
+                  versusStyles.matchupCellContainerTerran
                 )}
               </Box>
               <Box className={versusStyles.matchupRow}>
@@ -320,25 +324,25 @@ export default function Versus(): JSX.Element {
                   MatchUp.PVZ,
                   matchups.includes(MatchUp.PVZ),
                   versusStyles.verseTextProtoss,
-                  versusStyles.matchupCellContainerProtoss,
+                  versusStyles.matchupCellContainerProtoss
                 )}
                 {getMatchupCell(
                   MatchUp.PVT,
                   matchups.includes(MatchUp.PVT),
                   versusStyles.verseTextProtoss,
-                  versusStyles.matchupCellContainerProtoss,
+                  versusStyles.matchupCellContainerProtoss
                 )}
                 {getMatchupCell(
                   MatchUp.PVP,
                   matchups.includes(MatchUp.PVP),
                   versusStyles.verseTextProtoss,
-                  versusStyles.matchupCellContainerProtoss,
+                  versusStyles.matchupCellContainerProtoss
                 )}
                 {getMatchupCell(
                   MatchUp.PVR,
                   matchups.includes(MatchUp.PVR),
                   versusStyles.verseTextProtoss,
-                  versusStyles.matchupCellContainerProtoss,
+                  versusStyles.matchupCellContainerProtoss
                 )}
               </Box>
               <Box className={versusStyles.matchupRow}>
@@ -346,25 +350,25 @@ export default function Versus(): JSX.Element {
                   MatchUp.RVZ,
                   matchups.includes(MatchUp.RVZ),
                   versusStyles.verseTextRandom,
-                  versusStyles.matchupCellContainerRandom,
+                  versusStyles.matchupCellContainerRandom
                 )}
                 {getMatchupCell(
                   MatchUp.RVT,
                   matchups.includes(MatchUp.RVT),
                   versusStyles.verseTextRandom,
-                  versusStyles.matchupCellContainerRandom,
+                  versusStyles.matchupCellContainerRandom
                 )}
                 {getMatchupCell(
                   MatchUp.RVP,
                   matchups.includes(MatchUp.RVP),
                   versusStyles.verseTextRandom,
-                  versusStyles.matchupCellContainerRandom,
+                  versusStyles.matchupCellContainerRandom
                 )}
                 {getMatchupCell(
                   MatchUp.RVR,
                   matchups.includes(MatchUp.RVR),
                   versusStyles.verseTextRandom,
-                  versusStyles.matchupCellContainerRandom,
+                  versusStyles.matchupCellContainerRandom
                 )}
               </Box>
             </Box>
