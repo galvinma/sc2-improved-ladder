@@ -11,25 +11,19 @@ import time
 
 import schedule
 from dotenv import load_dotenv
-
-from enums import RegionId
-from utils.concurrency import run_threaded
+from matchmaker.match import execute_matchmaker
 
 load_dotenv()
 
-logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
+logging.basicConfig(format="%(asctime)s - %(name)s:%(lineno)d - %(levelname)s - %(message)s", level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-# def job():
-#     logger.info("I'm working...")
-#     print("I'm working...")
-
-
 def handle_schedule():
-    logger.info("Scheduling jobs...")
+    logger.info("Initializing matchmaker...")
 
-    # schedule.every(3).seconds.do(job)
+    # TODO Put schedule to a var
+    schedule.every(10).seconds.do(execute_matchmaker)
 
     while True:
         schedule.run_pending()

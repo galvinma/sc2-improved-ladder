@@ -7,7 +7,8 @@ import os
 
 from api.auth import auth
 from api.match import match
-from db.query.user import query_user
+from api.match_request import match_request
+from db.query.user import query_user_by_email
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
@@ -23,6 +24,7 @@ jwt = JWTManager(app)
 
 # Blueprint
 app.register_blueprint(auth, url_prefix="/api")
+app.register_blueprint(match_request, url_prefix="/api")
 app.register_blueprint(match, url_prefix="/api")
 
 # Config
@@ -33,7 +35,7 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 @jwt.user_lookup_loader
 def user_lookup_callback(_jwt_header, jwt_data):
     email = jwt_data["sub"]
-    return query_user(email)
+    return query_user_by_email(email)
 
 
 # TODO host/port into env

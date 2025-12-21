@@ -22,7 +22,6 @@ export function getRoutes(): RoutePropsList {
     { path: "/register", privateRoute: false, element: <Register /> },
     // Private
     { path: "/lobby", privateRoute: true, element: <Lobby /> },
-    { path: "/match", privateRoute: true, element: <Match /> },
     { path: "/versus", privateRoute: true, element: <Versus /> },
     { path: "/match/:id", privateRoute: true, element: <Match /> },
 

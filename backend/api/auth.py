@@ -2,7 +2,7 @@ import logging
 
 from db.helpers import create
 from db.model import User
-from db.query.user import query_user
+from db.query.user import query_user_by_email
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import (
     create_access_token,
@@ -41,7 +41,7 @@ def register():
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    user = query_user(email)
+    user = query_user_by_email(email)
     if not user or not user.check_password(password):
         return jsonify("Wrong username or password"), 401
 
