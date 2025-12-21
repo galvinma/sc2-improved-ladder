@@ -15,7 +15,10 @@ from matchmaker.match import execute_matchmaker
 
 load_dotenv()
 
-logging.basicConfig(format="%(asctime)s - %(name)s:%(lineno)d - %(levelname)s - %(message)s", level=logging.INFO)
+logging.basicConfig(
+    format="%(asctime)s - %(name)s:%(lineno)d - %(levelname)s - %(message)s",
+    level=logging.INFO,
+)
 logger = logging.getLogger(__name__)
 
 

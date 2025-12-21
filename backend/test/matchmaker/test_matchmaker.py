@@ -31,10 +31,20 @@ def _match_request(
 
 
 def _user_rating(
-    id=1, created_at=datetime.now(), updated_at=datetime.now(), matchup=MatchUp.ZVT, rating=1000, user_id=1
+    id=1,
+    created_at=datetime.now(),
+    updated_at=datetime.now(),
+    matchup=MatchUp.ZVT,
+    rating=1000,
+    user_id=1,
 ):
     return UserRating(
-        id=id, created_at=created_at, updated_at=updated_at, matchup=matchup, rating=rating, user_id=user_id
+        id=id,
+        created_at=created_at,
+        updated_at=updated_at,
+        matchup=matchup,
+        rating=rating,
+        user_id=user_id,
     )
 
 

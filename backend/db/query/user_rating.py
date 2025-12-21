@@ -10,7 +10,11 @@ def query_user_ratings_by_ids(user_ids):
         distinct=[UserRating.user_id, UserRating.matchup],
         column=UserRating.user_id,
         values=user_ids,
-        order_by=[UserRating.user_id.desc(), UserRating.matchup.desc(), UserRating.created_at.desc()],
+        order_by=[
+            UserRating.user_id.desc(),
+            UserRating.matchup.desc(),
+            UserRating.created_at.desc(),
+        ],
     )
 
 

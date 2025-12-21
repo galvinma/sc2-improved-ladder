@@ -42,5 +42,9 @@ def post_match_request():
 def put_match_request(match_request_id):
     data = request.json
     status = MatchRequestStatus(data.get("status"))
-    update(model=MatchRequest, where=(MatchRequest.id == match_request_id), values={"status": status})
+    update(
+        model=MatchRequest,
+        where=(MatchRequest.id == match_request_id),
+        values={"status": status},
+    )
     return jsonify({"match_request_id": match_request_id}), 200

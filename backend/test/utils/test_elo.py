@@ -1,5 +1,5 @@
 import pytest
-from utils.elo import expected_probability, elo_rating
+from utils.elo import elo_rating, expected_probability
 
 
 def test_expected_probability():

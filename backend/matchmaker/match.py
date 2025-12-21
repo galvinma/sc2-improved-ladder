@@ -68,7 +68,8 @@ def execute_matchmaker():
                 update(
                     model=MatchRequest,
                     where=or_(
-                        (MatchRequest.id == player_match_request_id), (MatchRequest.id == opponent_match_request_id)
+                        (MatchRequest.id == player_match_request_id),
+                        (MatchRequest.id == opponent_match_request_id),
                     ),
                     values={"status": MatchRequestStatus.FULFILLED},
                 )

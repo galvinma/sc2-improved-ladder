@@ -6,12 +6,9 @@ import argparse
 import logging
 
 from db.helpers import construct_uri, get_engine, session_scope
-from db.model import Profile
+from db.model import User
 
-
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO]
-)
+logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
 logger = logging.getLogger("__name__")
 
 
@@ -28,7 +25,7 @@ def seed_database(args):
     logger.info(uri)
     engine = get_engine(uri=uri)
     with session_scope(engine=engine) as session:
-        instance = Profile(**{"profile_id": 123, "realm_id": 1, "region_id": 1})
+        instance = User(**{"email": "mock_email@sc2il.com"})
         session.add(instance)
         session.commit()
         return instance

@@ -28,7 +28,14 @@ def upgrade() -> None:
         sa.Column("ranked", sa.Boolean(), nullable=False),
         sa.Column(
             "status",
-            sa.Enum("CREATED", "ACCEPTED", "REJECTED", "COMPLETED", "CANCELED", name="matchstatus"),
+            sa.Enum(
+                "CREATED",
+                "ACCEPTED",
+                "REJECTED",
+                "COMPLETED",
+                "CANCELED",
+                name="matchstatus",
+            ),
             nullable=False,
         ),
         sa.Column(
@@ -87,7 +94,9 @@ def upgrade() -> None:
         sa.Column("ranked", sa.Boolean(), nullable=False),
         sa.Column("matchups", sa.ARRAY(sa.String()), nullable=False),
         sa.Column(
-            "status", sa.Enum("CREATED", "PENDING", "FULFILLED", "CANCELED", name="matchrequeststatus"), nullable=False
+            "status",
+            sa.Enum("CREATED", "PENDING", "FULFILLED", "CANCELED", name="matchrequeststatus"),
+            nullable=False,
         ),
         sa.Column("user_id", sa.Integer(), nullable=True),
         sa.ForeignKeyConstraint(
@@ -131,7 +140,13 @@ def upgrade() -> None:
             ["user.id"],
         ),
         sa.PrimaryKeyConstraint("id"),
-        sa.UniqueConstraint("user_id", "matchup", "rating", "created_at", name="user_mmr_unique_constraint"),
+        sa.UniqueConstraint(
+            "user_id",
+            "matchup",
+            "rating",
+            "created_at",
+            name="user_mmr_unique_constraint",
+        ),
     )
     # ### end Alembic commands ###
 
