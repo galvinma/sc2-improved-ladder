@@ -39,10 +39,10 @@ jobs:
           .
     - name: black
       run: |
-        black --line-length=120
+        black . --line-length=120
     - name: isort
       run: |
-        isort --profile black --filter-files
+        isort . --profile black --filter-files
     - name: pytest
       run: |
         pytest -sv
