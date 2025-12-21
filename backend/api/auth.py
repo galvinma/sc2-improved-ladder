@@ -46,7 +46,12 @@ def login():
         return jsonify("Wrong username or password"), 401
 
     token = create_access_token(identity=email)
-    return jsonify(email=user.email, firstName=user.first_name, lastName=user.last_name, token=token)
+    return jsonify(
+        email=user.email,
+        firstName=user.first_name,
+        lastName=user.last_name,
+        token=token,
+    )
 
 
 @auth.route("/logout", methods=["POST"])

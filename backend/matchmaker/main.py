@@ -12,9 +12,6 @@ import time
 import schedule
 from dotenv import load_dotenv
 
-from enums import RegionId
-from utils.concurrency import run_threaded
-
 load_dotenv()
 
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)

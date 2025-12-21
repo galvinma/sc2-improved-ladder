@@ -28,7 +28,9 @@ def upgrade() -> None:
         sa.Column("ranked", sa.Boolean(), nullable=False),
         sa.Column("matchups", sa.ARRAY(sa.String()), nullable=False),
         sa.Column(
-            "status", sa.Enum("CREATED", "PENDING", "FULFILLED", "CANCELED", name="matchrequeststatus"), nullable=False
+            "status",
+            sa.Enum("CREATED", "PENDING", "FULFILLED", "CANCELED", name="matchrequeststatus"),
+            nullable=False,
         ),
         sa.Column("user_id", sa.Integer(), nullable=True),
         sa.ForeignKeyConstraint(
