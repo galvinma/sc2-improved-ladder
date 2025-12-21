@@ -44,5 +44,6 @@ jobs:
         run: |
           isort . --profile black --filter-files
       - name: pytest
+        working-directory: ./backend
         run: |
           pytest -sv
