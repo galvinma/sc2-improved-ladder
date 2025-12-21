@@ -1,7 +1,7 @@
 import logging
 
-from matchmaker.matching.games.stable_roommates import StableRoommates
-from matchmaker.matching.players.player import Player
+from matchmaker.matching_games.games.stable_roommates import StableRoommates
+from matchmaker.matching_games.players.player import Player
 from matchmaker.preferences import get_preferences
 
 logger = logging.getLogger(__name__)
